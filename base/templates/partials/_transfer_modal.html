@@ -1,0 +1,30 @@
+<div class="modal fade" id="transferModalCenter" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+        <form action="{% url 'base:transfer' %}" method="POST" id="transferForm" >
+           {% csrf_token %}
+          <div class="modal-header">
+             <h5 class="modal-title transferTitle" id="exampleModalCenterTitle">Transfer</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+                <div>
+                    <label for="">Account Number</label>
+                    <input type="text" name="accountNumber" id="transferAN" class="form-control" onkeyup="verifyAccount(this)">
+                    <small class="font-weight-bolder anDetails" id=""></small>
+                </div>
+              
+                  <div>
+                    <label for="">Amount</label>
+                    <input type="number" name="amount" id="transferAmount" class="form-control" min="0" max="{{user.account.balance}}">
+                  </div>
+          </div>
+          <div class="modal-footer">
+             <button type="submit" class="btn btn-primary actionTBtn" disabled>Transfer</button>
+          </div>
+        </form>
+       </div>
+    </div>
+ </div>

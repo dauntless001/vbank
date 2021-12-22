@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" />
+    {% include 'partials/_stylesheet.html' %}
+    {% block customstyles %}{% endblock %}
+  </head>
+  <body class="  ">
+    <!-- loader Start -->
+    <div id="loading">
+      <div id="loading-center"></div>
+    </div>
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+    {% block content %}
+
+    {% endblock content %}
+    {% include 'partials/_script.html' %}
+    {% block customscripts %}{% endblock customscripts %}
+  </body>
+</html>

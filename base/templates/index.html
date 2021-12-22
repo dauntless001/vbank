@@ -1,0 +1,312 @@
+{% extends 'partials/_layout.html' %} 
+{% load static %}
+{% block content %}
+
+{% include 'partials/_sidebar.html' %}
+{% include 'partials/_navbar.html' %}
+<div class="content-page">
+  <div class="messageAlert">
+    {% for message in messages %}
+    <div class="alert text-white bg-primary" role="alert">
+      <div class="iq-alert-text">{{message}}</div>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <i class="ri-close-line"></i>
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-8">
+        <div
+          class="card card-transparent card-block card-stretch card-height border-none"
+        >
+          <div class="card-body p-0 mt-lg-2 mt-0">
+            <h3 class="mb-3">Hi {{user.last_name}}, {{greeting.title}}</h3>
+            <p class="mb-0 mr-4">
+              Your dashboard gives you views of key performance or business
+              process.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-block card-stretch card-height">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-4 card-total-sale">
+              <div class="icon iq-icon-box-2 bg-success-light">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+              <div>
+                <p class="mb-2">Available Balance</p>
+                <h4 class="m-0 userBalance">{{user.account.balance}}</h4>
+                <small><strong>A/N: {{user.account.number}}</strong></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-block card-stretch card-height">
+          <div class="card-body">
+            <div class="d-flex align-items-center card-total-sale">
+              <div class="icon iq-icon-box-2 bg-success-light">
+                <i class="fas fa-coins"></i>
+
+              </div>
+              <div>
+                <h5 class="mb-2 font-weight-bolder text-uppercase">Deposit</h5>
+                <a href="#" data-action="Deposit" onclick="depositWithdraw(this)" data-toggle="modal" data-target="#depositWithdrawModalCenter">Start Here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-block card-outline-primary card-stretch card-height">
+          <div class="card-body">
+            <div class="d-flex align-items-center card-total-sale">
+              <div class="icon iq-icon-box-2 bg-success-light">
+                <i class="fas fa-money-check-alt"></i>
+              </div>
+              <div>
+                <h5 class="mb-2 font-weight-bolder text-uppercase">withdraw</h5>
+                <a href="#" data-action="Withdraw" onclick="depositWithdraw(this)" data-toggle="modal" data-target="#depositWithdrawModalCenter">Start Here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-block card-stretch card-height">
+          <div class="card-body">
+            <div class="d-flex align-items-center card-total-sale">
+              <div class="icon iq-icon-box-2 bg-success-light">
+                <i class="fas fa-hand-holding-usd"></i>
+              </div>
+              <div>
+                <h5 class="mb-2 font-weight-bolder text-uppercase">transfer</h5>
+                <a href="#" data-toggle="modal" data-target="#transferModalCenter">Start Here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-block card-stretch card-height-helf">
+          <div class="card-body">
+            <div class="d-flex align-items-top justify-content-between">
+              <div class="">
+                <p class="mb-0">Income</p>
+                <h5>$ 98,7800 K</h5>
+              </div>
+              <div class="card-header-toolbar d-flex align-items-center">
+                <div class="dropdown">
+                  <span
+                    class="dropdown-toggle dropdown-bg btn"
+                    id="dropdownMenuButton003"
+                    data-toggle="dropdown"
+                  >
+                    This Month<i class="ri-arrow-down-s-line ml-1"></i>
+                  </span>
+                  <div
+                    class="dropdown-menu dropdown-menu-right shadow-none"
+                    aria-labelledby="dropdownMenuButton003"
+                  >
+                    <a class="dropdown-item" href="#">Year</a>
+                    <a class="dropdown-item" href="#">Month</a>
+                    <a class="dropdown-item" href="#">Week</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="layout1-chart-3" class="layout-chart-1"></div>
+          </div>
+        </div>
+        <div class="card card-block card-stretch card-height-helf">
+          <div class="card-body">
+            <div class="d-flex align-items-top justify-content-between">
+              <div class="">
+                <p class="mb-0">Expenses</p>
+                <h5>$ 45,8956 K</h5>
+              </div>
+              <div class="card-header-toolbar d-flex align-items-center">
+                <div class="dropdown">
+                  <span
+                    class="dropdown-toggle dropdown-bg btn"
+                    id="dropdownMenuButton004"
+                    data-toggle="dropdown"
+                  >
+                    This Month<i class="ri-arrow-down-s-line ml-1"></i>
+                  </span>
+                  <div
+                    class="dropdown-menu dropdown-menu-right shadow-none"
+                    aria-labelledby="dropdownMenuButton004"
+                  >
+                    <a class="dropdown-item" href="#">Year</a>
+                    <a class="dropdown-item" href="#">Month</a>
+                    <a class="dropdown-item" href="#">Week</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="layout1-chart-4" class="layout-chart-2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card card-block card-stretch card-height">
+          <div class="card-header d-flex justify-content-between">
+            <div class="header-title">
+              <h4 class="card-title">Order Summary</h4>
+            </div>
+            <div class="card-header-toolbar d-flex align-items-center">
+              <div class="dropdown">
+                <span
+                  class="dropdown-toggle dropdown-bg btn"
+                  id="dropdownMenuButton005"
+                  data-toggle="dropdown"
+                >
+                  This Month<i class="ri-arrow-down-s-line ml-1"></i>
+                </span>
+                <div
+                  class="dropdown-menu dropdown-menu-right shadow-none"
+                  aria-labelledby="dropdownMenuButton005"
+                >
+                  <a class="dropdown-item" href="#">Year</a>
+                  <a class="dropdown-item" href="#">Month</a>
+                  <a class="dropdown-item" href="#">Week</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex flex-wrap align-items-center mt-2">
+              <div class="d-flex align-items-center progress-order-left">
+                <div
+                  class="progress progress-round m-0 orange conversation-bar"
+                  data-percent="46"
+                >
+                  <span class="progress-left">
+                    <span class="progress-bar"></span>
+                  </span>
+                  <span class="progress-right">
+                    <span class="progress-bar"></span>
+                  </span>
+                  <div class="progress-value text-secondary">46%</div>
+                </div>
+                <div class="progress-value ml-3 pr-5 border-right">
+                  <h5>$12,6598</h5>
+                  <p class="mb-0">Average Orders</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center ml-5 progress-order-right">
+                <div
+                  class="progress progress-round m-0 primary conversation-bar"
+                  data-percent="46"
+                >
+                  <span class="progress-left">
+                    <span class="progress-bar"></span>
+                  </span>
+                  <span class="progress-right">
+                    <span class="progress-bar"></span>
+                  </span>
+                  <div class="progress-value text-primary">46%</div>
+                </div>
+                <div class="progress-value ml-3">
+                  <h5>$59,8478</h5>
+                  <p class="mb-0">Top Orders</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body pt-0">
+            <div id="layout1-chart-5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page end  -->
+  </div>
+</div>
+{% include 'partials/_deposit_withdraw_modal.html' %}
+{% include 'partials/_transfer_modal.html' %}
+{% endblock %} {% block customscripts %}
+<script>
+
+  const depositWithdraw = e => {
+    const {action} = e.dataset
+    console.log('{{user.account.balance}}')
+    action == 'Deposit' ? document.querySelector('#depositWithdrawAmount').removeAttribute('max') : document.querySelector('#depositWithdrawAmount').setAttribute('max', $('.userBalance').text())
+    document.querySelector('.depositWithdrawTitle').textContent = action
+    document.querySelector('.actionBtn').textContent = action
+  }
+
+  const handleRecaptcha = e => {
+    const {value} = e
+    const recaptcha = document.querySelector('#recaptcha').textContent
+    value === recaptcha ? document.querySelector('.actionBtn').disabled =false : ''
+  }
+
+  document.querySelector('#depositWithdrawForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const amount = $('#depositWithdrawAmount').val()
+    const action = $('.actionBtn').text()
+    $.ajax({
+      url : "{% url 'base:deposit_withdraw' %}",
+      method : 'POST',
+      headers : {'X-CSRFToken':"{{csrf_token}}"},
+      data : {amount : amount, action : action},
+      success : res => {
+
+        $('#depositWithdrawAmount').val('')
+        $('#recaptchaDepositWithdraw').val('')
+        $('.userBalance').text(res.availableBalance)
+        $('#depositWithdrawModalCenter').modal('hide')
+        $('.messageAlert').append(`
+        <div class="alert text-white bg-primary" role="alert">
+          <div class="iq-alert-text">${res.message}</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <i class="ri-close-line"></i>
+          </button>
+        </div>
+        `)
+      },
+      error : err => {
+        $('.messageAlert').append(`
+        <div class="alert text-white bg-danger" role="alert">
+          <div class="iq-alert-text">Error Occurred</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <i class="ri-close-line"></i>
+          </button>
+        </div>
+        `)
+      }
+    })
+  })
+  const verifyAccount = e => {
+    const {value} = e
+    $.ajax({
+      url : "{% url 'base:transfer' %}",
+      method : 'GET',
+      data : {accountNumber : value},
+      success : res => {
+        document.querySelector('.anDetails').textContent = res.name
+        res.error ? document.querySelector('.actionTBtn').disabled = true :  document.querySelector('.actionTBtn').disabled = false
+      },
+      error : err => {
+        $('.messageAlert').append(`
+        <div class="alert text-white bg-primary" role="alert">
+          <div class="iq-alert-text">${res.message}</div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <i class="ri-close-line"></i>
+          </button>
+        </div>
+        `)
+      }
+    })
+  }
+</script>
+
+{% endblock customscripts %}

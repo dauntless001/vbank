@@ -1,0 +1,37 @@
+{% extends "partials/_layout.html" %}
+{% load i18n static %}
+{% load account socialaccount %}
+
+{% block content %}
+<section class="login-content">
+  <div class="container">
+     <div class="row align-items-center justify-content-center height-self-center">
+        <div class="col-lg-8">
+           <div class="card auth-card">
+              <div class="card-body p-0">
+                 <div class="d-flex align-items-center auth-content">
+                    <div class="align-self-center mx-auto text-center">
+                       <div class="p-3">
+                          <h2 class="mb-2">Logout</h2>
+                          <p>Are you sure you want to sign out?</p>
+                          <form method="POST">
+                            {% csrf_token %}
+                              <div class="">
+                                <a href="{% url 'base:index' %}" class="btn btn-outline-danger">Go Back</a>
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                             </div>
+                          </form>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+
+
+{% endblock content %}
+
+
