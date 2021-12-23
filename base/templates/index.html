@@ -1,5 +1,5 @@
 {% extends 'partials/_layout.html' %} 
-{% load static %}
+{% load static humanize %}
 {% block page_title %} Home {% endblock %}
 {% block content %}
 
@@ -41,7 +41,7 @@
               </div>
               <div>
                 <p class="mb-2">Available Balance</p>
-                <h4 class="m-0 userBalance">{{user.account.balance}}</h4>
+                <h4 class="m-0 userBalance">{{user.account.balance | intcomma}}</h4>
                 <small><strong>A/N: {{user.account.number}}</strong></small>
               </div>
             </div>
