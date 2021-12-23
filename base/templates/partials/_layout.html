@@ -7,10 +7,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+    <title>vrBank | {% block page_title %} {% endblock %}</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
     {% include 'partials/_stylesheet.html' %}
     {% block customstyles %}{% endblock %}
   </head>

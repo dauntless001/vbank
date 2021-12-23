@@ -1,5 +1,6 @@
 {% extends 'partials/_layout.html' %} 
 {% load static %}
+{% block page_title %} Home {% endblock %}
 {% block content %}
 
 {% include 'partials/_sidebar.html' %}
@@ -25,7 +26,7 @@
           <div class="card-body p-0 mt-lg-2 mt-0">
             <h3 class="mb-3">Hi {{user.last_name}}, {{greeting.title}}</h3>
             <p class="mb-0 mr-4">
-              Your dashboard gives you views of key performance or business
+              Your dashboard gives you views of key performance or transaction
               process.
             </p>
           </div>
@@ -98,7 +99,7 @@
           <div class="card-body">
             <div class="d-flex align-items-top justify-content-between">
               <div class="">
-                <p class="mb-0">Income</p>
+                <p class="mb-0">Deposit/Transfers</p>
                 <h5>$ 98,7800 K</h5>
               </div>
               <div class="card-header-toolbar d-flex align-items-center">
@@ -128,7 +129,7 @@
           <div class="card-body">
             <div class="d-flex align-items-top justify-content-between">
               <div class="">
-                <p class="mb-0">Expenses</p>
+                <p class="mb-0">Withdrawals/Transfers</p>
                 <h5>$ 45,8956 K</h5>
               </div>
               <div class="card-header-toolbar d-flex align-items-center">
@@ -159,7 +160,7 @@
         <div class="card card-block card-stretch card-height">
           <div class="card-header d-flex justify-content-between">
             <div class="header-title">
-              <h4 class="card-title">Order Summary</h4>
+              <h4 class="card-title">Account Summary</h4>
             </div>
             <div class="card-header-toolbar d-flex align-items-center">
               <div class="dropdown">
@@ -198,7 +199,7 @@
                 </div>
                 <div class="progress-value ml-3 pr-5 border-right">
                   <h5>$12,6598</h5>
-                  <p class="mb-0">Average Orders</p>
+                  <p class="mb-0">Average Withdrawal</p>
                 </div>
               </div>
               <div class="d-flex align-items-center ml-5 progress-order-right">
@@ -216,7 +217,7 @@
                 </div>
                 <div class="progress-value ml-3">
                   <h5>$59,8478</h5>
-                  <p class="mb-0">Top Orders</p>
+                  <p class="mb-0">Top Withdrawals</p>
                 </div>
               </div>
             </div>
