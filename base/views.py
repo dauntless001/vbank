@@ -40,7 +40,7 @@ class DepositWithdrawView(LoginRequiredMixin,View):
                 transaction.type = Transaction.TransactionTypeChoice.debit
             self.request.user.account.save()
             transaction.save()
-            data['message'] = f'{action} of {amount} was successful'
+            data['message'] = f'{action} of ${amount} was successful'
             data['amount'] = amount
             data['availableBalance'] = self.request.user.account.balance
             return JsonResponse(data, safe=False)
