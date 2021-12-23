@@ -238,7 +238,6 @@
 
   const depositWithdraw = e => {
     const {action} = e.dataset
-    console.log('{{user.account.balance}}')
     action == 'Deposit' ? document.querySelector('#depositWithdrawAmount').removeAttribute('max') : document.querySelector('#depositWithdrawAmount').setAttribute('max', $('.userBalance').text())
     document.querySelector('.depositWithdrawTitle').textContent = action
     document.querySelector('.actionBtn').textContent = action

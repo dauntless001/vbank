@@ -1,0 +1,74 @@
+{% extends 'partials/_layout.html' %} 
+{% load static humanize %}
+{% block page_title %} Transactions {% endblock %}
+{% block content %}
+
+{% include 'partials/_sidebar.html' %}
+{% include 'partials/_navbar.html' %}
+<div class="content-page">
+  <div class="messageAlert">
+    {% for message in messages %}
+    <div class="alert text-white bg-primary" role="alert">
+      <div class="iq-alert-text">{{message}}</div>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <i class="ri-close-line"></i>
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+           <div class="card">
+              <div class="card-header d-flex justify-content-between">
+                 <div class="header-title">
+                    <h4 class="card-title">Transactions</h4>
+                 </div>
+              </div>
+              <div class="card-body">
+                 <p>Displays the list of transactions you've done from time to time.</p>
+                 <div class="table-responsive">
+                    <table id="datatable" class="table data-tables table-striped">
+                       <thead>
+                          <tr class="ligth">
+                             <th>S/N</th>
+                             <th>Description</th>
+                             <th>Type</th>
+                             <th>Date</th>
+                          </tr>
+                       </thead>
+                       <tbody>
+                           {% for transaction in transactions %}
+                          <tr>
+                             <td>{{forloop.counter}}</td>
+                             <td>{{transaction.desc}}</td>
+                             <td>{{transaction.type}}</td>
+                             <td>{{transaction.created_at}}</td>
+                          </tr>
+                          {% endfor %}
+                       </tbody>
+                       <tfoot>
+                          <tr>
+                            <th>S/N</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Date</th>
+                          </tr>
+                       </tfoot>
+                    </table>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+    <!-- Page end  -->
+  </div>
+</div>
+
+{% endblock %} {% block customscripts %}
+<script>
+
+</script>
+
+{% endblock customscripts %}

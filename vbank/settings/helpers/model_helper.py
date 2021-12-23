@@ -28,16 +28,3 @@ class NameDescTimeBasedModel(NameTimeBasedModel):
         abstract = True
 
 
-class AuthorNameTimeBasedModel(NameTimeBasedModel):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    class Meta:
-        abstract = True
-
-
-class AuthorDescNameTimeBasedModel(NameDescTimeBasedModel):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    class Meta:
-        abstract = True
-

@@ -5,7 +5,7 @@ from django.views.generic import View
 import decimal, datetime
 from accounts.models import Account
 from django.contrib import messages
-
+from transactions.models import Transaction
 from base.utils import greeting
 
 # Create your views here.
@@ -28,12 +28,18 @@ class DepositWithdrawView(LoginRequiredMixin,View):
             data = {}
             action = ajaxData['action']
             amount = ajaxData['amount']
-            
+            transaction = Transaction()
+            transaction.user = self.request.user
             if action.lower() == 'deposit':
                 self.request.user.account.balance += decimal.Decimal(amount)
+                transaction.desc = f'You deposited ${amount}'
+                transaction.type = Transaction.TransactionTypeChoice.credit
             else:
                 self.request.user.account.balance -= decimal.Decimal(amount)
+                transaction.desc = f'You Withdrew ${amount}'
+                transaction.type = Transaction.TransactionTypeChoice.debit
             self.request.user.account.save()
+            transaction.save()
             data['message'] = f'{action} of {amount} was successful'
             data['amount'] = amount
             data['availableBalance'] = self.request.user.account.balance
@@ -61,10 +67,20 @@ class VerifyTransferView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         ajaxData = request.POST
         amount = ajaxData['amount']
+        senderTransaction = Transaction()
+        receiverTransaction = Transaction()
+        senderTransaction.user = self.request.user
+        senderTransaction.type = Transaction.TransactionTypeChoice.debit
+        receiverTransaction.type = Transaction.TransactionTypeChoice.credit
         account = Account.objects.get(number=ajaxData['accountNumber'])
+        receiverTransaction.user = account.user
+        receiverTransaction.desc = f'You received {amount} from {self.request.user.get_full_name()} with account number {self.request.user.account.number}'
         account.balance += decimal.Decimal(amount)
         account.save()
+        receiverTransaction.save()
         self.request.user.account.balance -= decimal.Decimal(amount)
+        senderTransaction.desc = f'You sent {amount} to {account.user.get_full_name()} with account number {account.number}'
+        senderTransaction.save()
         self.request.user.account.save()
         messages.success(request, f'Transfer of {amount} to {account.user.get_full_name()}')
         return redirect('base:index')
